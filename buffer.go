@@ -130,7 +130,11 @@ func (b *Buffer) ReadBytes(start, size int64, isPreload bool) ([]byte, error) {
 			}
 
 			return buf[:size], nil
+		} else {
+			Log.Debugf("Could not read file %s at %v", filename, fOffset)
 		}
+	} else {
+		Log.Debugf("File not found %s", filename)
 	}
 
 	Log.Debugf("Requesting object %v bytes %v - %v from API", b.object.ObjectID, offset, offsetEnd)
